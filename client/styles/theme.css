@@ -1,0 +1,126 @@
+
+body {
+    background-color: #fff;
+
+
+    /* default light mode background color */
+    color: #1f1f1f;
+    /* default light mode text color */
+}
+
+nav {
+    background-color: #ffffff00;
+}
+
+
+body.dark-mode {
+    background-color: #1f1f1f;
+
+    /* dark mode background color */
+    color: #fff;
+    /* dark mode text color */
+}
+
+nav.dark-mode {
+    background-color: #ffffff00;
+}
+
+nav.dark-mode a{
+    color: #FFF;
+}
+
+#seperator-bar.dark-mode {
+    background-color: #FFF;
+}
+.dropdown-content.dark-mode{
+    background-color: #474040;
+}
+
+#rubric-mark-container,
+#rubric-view-container,
+.q-section {
+    background-color: #eee;
+
+}
+
+#homepageText-container-container {
+    color: #000;
+    -webkit-text-stroke: 2px black;
+
+
+}
+
+#homepageText-container.dark-mode {
+    color: #FFF;
+    -webkit-text-stroke: 2px white;
+
+}
+
+#loginRegisterBtn.dark-mode {
+    color: #FFF;
+}
+
+
+#about-btn.dark-mode {
+    color: #FFF;
+}
+
+
+#toggle-btn.dark-mode {
+    color: #FFF;
+}
+
+
+#rubric-mark-container.dark-mode,
+#rubric-view-container.dark-mode,
+.q-section.dark-mode {
+    background-color: #444;
+}
+
+
+.modal-content {
+    background-color: #FFF;
+    color: #000;
+}
+
+.modal-content.dark-mode {
+    background-color: #3d3a3a;
+    color: #FFF;
+}
+
+
+body.dark-mode .ql-editor {
+    color: #000;
+    /* dark mode text color */
+}
+
+#rubric-view-container table {
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+#rubric-view-container.dark-mode table {
+    border-collapse: collapse;
+    border: 1px solid white;
+}
+
+
+#rubric-view-container td {
+    border: 1px solid black;
+}
+
+#rubric-view-container.dark-mode td {
+    border: 1px solid white;
+}
+
+.footer.dark-mode{
+    color: #ffffff;
+    background-color: #000;
+}
+
+
+
+#toolbar.dark-mode{
+    background-color: rgba(50, 50, 50, 0.467);
+}
+

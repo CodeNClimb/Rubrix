@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="EN" lang="EN">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Rubrix</title>
+  <link rel="shortcut icon" href="assets/icon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="styles/rubric.css" />
+  <link rel="stylesheet" href="styles/nav.css" />
+  <link rel="stylesheet" href="styles/modal.css" />
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="styles/theme.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Sono:wght@300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+
+
+
+  <!-- NAV BAR -->
+  <nav id="nav">
+    <!-- show on the left if user is logged in -->
+    <a class="nav-auth-left" href="#creator" onclick="showPage('rubric-creator')">Create Rubric</a>
+    <a class="nav-auth-left" href="#rubrics" onclick="showPage('rubrics');">My Rubrics</a>
+    <a class="nav-auth-left" href="#marker" onclick="showPage('marker')">Mark Submissions</a>
+    <a class="nav-auth-left" href="#tutorial" onclick="showPage('tutorial'); ">Tutorial</a>
+
+
+
+    <!-- Always show on right -->
+    <button id="toggle-btn">Toggle Theme</button>
+    <button id="about-btn" onclick="showPage('about')">About</button>
+
+
+    <!-- Show on right if not logged in -->
+    <button id="loginRegisterBtn" onclick="showPage('loginRegisterContainer')">
+      Login / Register
+    </button>
+
+        <!--show on the right if user is logged in -->
+        <a class="nav-auth-right" href="#" onclick="logout();" id="logoutBtn">Logout</a>
+
+        <div id="seperator-bar"></div>
+  </nav>
+
+
+
+  <!-- LANDING PAGE-->
+  <div id="homepage">
+    <h1>
+      <span>R</span>
+      <span>u</span>
+      <span>b</span>
+      <span>r</span>
+      <span>i</span>
+      <span>x</span>
+      <span>.</span>
+    </h1>
+    <div class="container">
+      <div id="homepageText-container">
+        <p>Create Rubrics,</p>
+        <p>Dynamic Marking,</p>
+        <p>Provide Feedback,</p>
+        <p>All in one.</p>
+      </div>
+      <div id="homepageLogo-container">
+        <img src="assets/icon.png" alt="Icon" id="icon-homepage" />
+      </div>
+    </div>
+  </div>
+  <!-- Login and register form container -->
+  <div id="loginRegisterContainer">
+    <!-- Login form-->
+    <div class="formBox" id="loginBox">
+      <button type = "button" class="loginRegisterToggle" id="login-form" onclick="toggleForm('loginBox')">
+        Login
+      </button>
+      <button type = "button" class="loginRegisterToggle" id="register-form-toggle" onclick="toggleForm('registerBox')">
+        Register
+      </button>
+      <form id="sign-in" onsubmit="Login(event, this)">
+        <div id="userLoginDetails">
+          <br />
+          <label for="loginUsernameInput">Username</label><br />
+          <input type="text" name="LoginUsername" id="loginUsernameInput" placeholder="Username..." required />
+          <br />
+          <br />
+
+          <label for="loginPasswordInput">Password</label><br />
+          <input type="password" name="LoginPassword" id="loginPasswordInput" placeholder="Password..." required />
+        </div>
+        <button class="submitBtn" id="sign-in-button" type="submit">
+          Sign-in
+        </button>
+        <div id="auth-response-message" style="font-size: small"></div>
+
+      </form>
+      
+
+    </div>
+    
+    <!-- Register form-->
+  <div class="formBox" id="registerBox">
+
+      <button type = "button" class="loginRegisterToggle" id="login-form-toggle" onclick="toggleForm('loginBox')">
+        Login
+      </button>
+      <button type = "button" class="loginRegisterToggle" id="register-form" onclick="toggleForm('registerBox')">
+        Register
+      </button>
+    <form id="register" onsubmit="Register(event, this)" style="padding-bottom:1rem;">
+      <div id="userRegistrationDetails">
+        <br />
+        <label for="registrationUsernameInput">Username</label>
+        <input required type="text" name="Username" id="registrationUsernameInput" placeholder="Username..." />
+        <br />
+        <label for="firstName">First Name</label> <br />
+        <input required type="text" name="FirstName" id="firstName" placeholder="First name..." />
+        <br />
+        <label for="lastName">Last Name</label> <br />
+        <input required type="text" name="LastName" id="lastName" placeholder="Last name..." />
+        <br />
+        <label for="email">Email</label> <br />
+        <input required type="text" name="Email" id="email" placeholder="Email..." />
+        <br />
+        <label for="registrationPasswordInput">Password</label> <br />
+        <input required type="password" name="Password" id="registrationPasswordInput" placeholder="Password..." />
+        <br />
+        <label for="matchPasswordInput" id="label2">Match Password</label>
+        <input required type="password" name="PasswordMatch" id="matchPasswordInput" placeholder="Retype password...." />
+        <br />
+        <button class="submitBtn" id="register-button" type="submit">
+          Register
+        </button>
+        <div id="registration-response-message" style="font-size: small"></div>
+      </div>
+    </form>
+  </div>
+  </div>
+
+  
+
+  <div id="about">
+    <div class="arrow" onclick="showPage('homepage')";>
+
+  </div>
+    <h2>WHAT WE'RE ABOUT</h2>
+    <p>_____________________________________</p>
+    <p></p>
+    <p>
+      Rubrix is a web application designed to help teachers and educators
+      create and manage rubrics for grading assignments and projects.
+    <p>Login or register above to get started!</p>
+    <p>_____________________________________</p>
+    <p></p>
+  </div>
+
+
+
+  <!-- RUBRIC CREATION PAGE -->
+  <div id="rubric-creator">
+    <h2>Rubric Creator</h2>
+    <h3>Select an option:</h3>
+    <input type="hidden" name="rubricID" id="rubricID"/>
+    <div id="toolbar">
+      <div class="dropdown">
+        <button class="dropBtn" id = "upload-button">Upload</button>
+        <div class="dropdown-content">
+          <button type="button" id = upload-button-dropdown1 class="buttonToolbar" onclick="readUserSelectedRubrixFile('edit')">
+            Rubrix File
+          </button>
+          <button type="button" id = "upload-button-dropdown2" class="buttonToolbar" onclick="selectRubrixFromServer('edit')">
+            From Server
+          </button>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropBtn" id = "insert-button">Insert</button>
+        <div class="dropdown-content" >
+          <button type="button" id = "insert-button-dropdown2" class="buttonToolbar" onclick="addCriteria();">
+            Criteria
+          </button>
+          <button type="button" id = "insert-button-dropdown4" class="buttonToolbar" onclick="addChecklist()">
+            Requirement
+          </button>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropBtn" id = save-button>Save</button>
+        <div class="dropdown-content">
+          <button id="save-to-database" type="button" class="buttonToolbar" onclick = "saveRubricToDatabase();">
+            To Database
+          </button>
+          <button id="save-html-button" type="button" class="buttonToolbar">
+            Save Rubric as HTML
+          </button>
+          <button id="download-rubrix-button" type="button" class="buttonToolbar">
+            Download Rubrix File
+          </button>
+        </div>
+      </div>
+    </div>
+    <br/>
+    <div id = "course-details">
+      <label for="courses">Course</label> <br/>
+      <select id="courses">
+            //javascript to insert courses
+      </select>
+      <button id="addCourseBtn">Add Course</button>
+
+      <div id="coursePopup" class="popup">
+        <div class="popup-content">
+          <span class="close">&times;</span>
+          <h2>Add Course</h2>
+          <form id="courseForm">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" placeholder="Subject..." required>
+            <br>
+            <label for="catalogNbr">Catalog Number:</label>
+            <input type="text" id="catalogNbr" placeholder="Course Number..." required>
+            <br>
+            <label for="title">Title</label>
+            <input type="text" id="title" placeholder="Course..." required>
+            <br>
+            <label for="description">Description</label>
+            <textarea id="description" placeholder="Course description..." required></textarea>
+            <br>
+            <input type="submit" value="Add">
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id = "rubic-details">
+      <br/><br/><br/><br/><br/>
+      <form>
+        <label for='rubric-title'>Rubric Title</label> <br/>
+        <div id = 'rubric-title' class = "rubric-info"> </div><br/> <br/><br/><br/>
+        <label for='rubric-description'>Rubric Description</label> <br/>
+            <div id = 'rubric-description' class = "rubric-info"> </div><br/> <br/><br/><br/>
+        <label for='rubric-notes'>Note To Markers</label> <br/>
+            <div id = 'rubric-notes' class = "rubric-info"></div>
+      </form>
+    </div>
+    <br />
+    <button id="delete-all-btn">Delete All Questions</button>
+    <div id="input-container"></div>
+  </div>
+
+  <!-- DISPLAYS USER ASSOCIATED RUBRICS -->
+  <div id = "rubrics">
+    <h2>My Rubrics</h2>
+    <p id = 'no-rubric-message'>You are yet to create a rubric.</p>
+    <div id = 'rubrics-container' class = 'rubrics-container'>
+
+    </div>
+  </div>
+
+
+
+  <!-- RUBRIC VIEWER PAGE  -->
+  <div id="rubric-viewer">
+    <h2>Rubric Loader</h2>
+    <div class="toolbar">
+      <button onclick="readUserSelectedRubrixFile('view')">
+        Load Rubrix File
+      </button>
+      <button onclick="selectRubrixFromServer('view')" id="buttonToolbar">
+        Select Rubrix from Server
+      </button>
+    </div>
+    <div id="rubric-view-container"></div>
+  </div>
+
+  <!-- MARKING PAGE-->
+  <div id="marker">
+    <h2>Marker</h2>
+    <div class="toolbar">
+
+      <button class="buttonToolbar" onclick="selectRubrixFromServer('mark')">
+        Select Rubrix
+      </button>
+      <button class="buttonToolbar" id="csv-button" onclick="downloadToCSV();">
+        Download CSV
+      </button>
+      <button class="buttonToolbar" id="pdf-button" onclick="openFileSelector();">
+        Load PDF
+      </button>
+      <input type="file" id="pdf-file-input" style="display: none" />
+
+    </div>
+
+    <div id="rubric-mark-container">
+      <table>
+        <tr>
+          <td>
+            <div id="rubric-mark-view-container"></div>
+          </td>
+          <td>
+            <iframe id="rubric-pdf-viewer" src=""></iframe>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div id="myRubrics"></div>
+
+  <!-- TUTORIAL PAGE-->
+  <div id="tutorial">
+    <h2>Tutorial</h2>
+    <p>This is the Tutorial page.</p>
+    <hr>
+    <h3><u>Creating a rubric:</u></h3>
+    <p> To create a rubric, first select an existing course from the drop down menu or create a new course by clicking the 'Add Course' button.</p>
+    <p>Select the new course you have just created from the list, then:</p>
+    <ul>
+      <li><u>Rubric Title: </u></li>
+        <p class = "tutorial-text"> Insert the title of the rubric, for example 'Assignment 2'.</p>
+
+      <li><u>Rubric Description:</u></li>
+      <p  class= "tutorial-text"> Provide a description that outlines what the rubric is about and its intentions.</p>
+
+      <li><u>Note to Markers:</u></li>
+    <p class= "tutorial-text"> Provide instructions for markers on specific within the rubrics.</p>
+
+    </ul>
+    <p>Adding content:</p>
+    <p>From the insert drop down list, select a criteria or requirement field to add to your rubric. </p>
+    <ul>
+      <li><u>Criteria: </u></li>
+        <p class = "tutorial-text">Specify the question number and the what the question is about.</p>
+        <p class = "tutorial-text">Specify the number of coumns and rows required and assign marks for each criteria.</p>
+        <p class = "tutorial-text">Add items that show what the student must acheive to gain the corresponding marks.</p>
+      <li><u>Requirement:</u></li>
+      <p  class= "tutorial-text"> Provide a question number and fill in the requirement checklist,
+        indenting to further specify what is require to achieve this requirement.</p>
+    </ul>
+  </br>
+    <hr>
+    <h3><u>Saving / Uploading a rubric:</u></h3>
+    <p> From the save drop down list on the create rubric page, you can select one of the following:</p>
+    <ul>
+      <li><u>Save to Database: </u></li>
+        <p class = "tutorial-text">This saves your current rubric to our servers for easy retrieval and editing.</p>
+
+      <li><u>Save as HTML:</u></li>
+      <p  class= "tutorial-text">This saves the rubric as an HTML file that can be neatly displayed in any browser.</p>
+
+      <li><u>Download Rubrix File:</u></li>
+    <p class= "tutorial-text">This downloads the rubric as a '.rubrix' file which can be saved locally.</p>
+    </br>
+    </ul>
+    <p>From the upload drop down list you can:</p>
+    <ul>
+      <li><u>Rubrix File: </u></li>
+        <p class = "tutorial-text">This lets you upload a rubrix file that you have saved on your machine.</p>
+
+      <li><u>From Server:</u></li>
+      <p  class= "tutorial-text">This lets you upload a rubric that you have previously made and saved to the server.</p>
+    </br>
+    </ul>
+    <hr>
+    <h3><u>My Rubrics:</u></h3>
+    <p> From this page you can view all rubrics you have created, you can also edit, download and delete you rubrics from this screen:</p>
+  <br/>
+  <hr>
+  <h3><u>Mark Submissions:</u></h3>
+  <p> From this page you upload the student work via PDF and the corresponding rubric, either from your local machine or our server.</p>
+  <ul>
+    <li>Once you have selected the rubric, you can proceed to fill out the fields and add personal feedback to the student.</li>
+  </ul>
+<br/>
+
+
+  </div>
+
+  <div id="successfulRegistrationCard" class="animated fadeIn">
+    <div id="upper-side">
+      <?xml version="1.0" encoding="utf-8"?>
+      <!-- Generator: Adobe Illustrator 17.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0) -->
+      <svg version="1.1" id="checkmark" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        x="0px" y="0px" xml:space="preserve">
+        <path d="M131.583,92.152l-0.026-0.041c-0.713-1.118-2.197-1.447-3.316-0.734l-31.782,
+        20.257l-4.74-12.65 c-0.483-1.29-1.882-1.958-3.124-1.493l-0.045,0.017c-1.242,
+        0.465-1.857,1.888-1.374,3.178l5.763,15.382 c0.131,0.351,0.334,0.65,
+        0.579,0.898c0.028,0.029,0.06,0.052,0.089,0.08c0.08,0.073,0.159,0.147,
+        0.246,0.209 c0.071,0.051,0.147,0.091,0.222,0.133c0.058,0.033,0.115,
+        0.069,0.175,0.097c0.081,0.037,0.165,0.063,0.249,0.091 c0.065,0.022,
+        0.128,0.047,0.195,0.063c0.079,0.019,0.159,0.026,0.239,0.037c0.074,
+        0.01,0.147,0.024,0.221,0.027 c0.097,0.004,0.194-0.006,
+        0.292-0.014c0.055-0.005,0.109-0.003,0.163-0.012c0.323-0.048,
+        0.641-0.16,0.933-0.346l34.305-21.865 C131.967,94.755,132.296,93.271,131.583,92.152z" />
+        <circle fill="none" stroke="#ffffff" stroke-width="5" stroke-miterlimit="10" cx="109.486" cy="104.353"
+          r="32.53" />
+      </svg>
+      <h3 id="status">Success</h3>
+    </div>
+    <div id="lower-side">
+      <p id="message">
+        Registration Successful <br />
+        Please login to continue.
+      </p>
+      <a href="#auth" id="contBtn" onclick="showPage('loginRegisterContainer');toggleForm('loginBox');">Continue</a>
+    </div>
+  </div>
+
+    <div class="footer">Rubrix Submitted Version</div>
+    <p class="spinner" id="spinner"></p>
+
+
+
+                              <!-- API Scripts -->
+  <script src="api/auth.js?timestamp=<?php echo time(); ?>"></script>
+  <script src="api/rubric.js?timestamp=<?php echo time(); ?>"></script>
+  <script src="api/users.js?timestamp=<?php echo time(); ?>"></script>
+  <script src="api/criteria.js?timestamp=<?php echo time(); ?>"></script>
+  <script src="api/courses.js?timestamp=<?php echo time(); ?>"></script>
+  <script src="api/gradeBoundary.js?timestamp=<?php echo time(); ?>"></script>
+  <script src="api/requirements.js?timestamp=<?php echo time(); ?>"></script>
+
+
+                              <!-- Components Scripts -->
+  <script src="components/theme.js?timestamp=<?php echo time(); ?>"></script>
+  <script src="components/login.js?timestamp=<?php echo time(); ?>"></script>
+  <script src="components/nav.js?timestamp=<?php echo time(); ?>"></script>
+
+
+                                        <!-- Rubric Scripts -->
+    <script src="rubric/script.js?timestamp=<?php echo time(); ?>"></script>
+    <script src="rubric/load.js?timestamp=<?php echo time(); ?>"></script>
+    <script src="rubric/save.js?timestamp=<?php echo time(); ?>"></script>
+    <script src="rubric/store.js?timestamp=<?php echo time(); ?>"></script>
+    <script src="rubric/markingDownload.js?timestamp=<?php echo time(); ?>"></script>
+
+                                    <!-- Others -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+  </body>
+</html>
